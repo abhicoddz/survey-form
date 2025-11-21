@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Source Code Manager</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    .file-list { margin-top: 10px; }
+    .file-item { cursor: pointer; padding: 5px; }
+    .file-item:hover { background: #f0f0f0; }
+    #code-display {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Source Code Manager</h1>
+  <div class="file-list">
+    <h3>Files:</h3>
+    <ul id="file-list-container">
+      <!-- Files will be populated by JavaScript -->
+    </ul>
+  </div>
+  <div id="code-display"></div>
+
+  <script>
+    // Simulated list of source‑code files (you’d normally fetch this from a server)
+    const files = {
+      'index.html': '<!DOCTYPE html>\n<html>\n  <head>...</head>\n  <body>...</body>\n</html>',
+      'style.css': 'body { font-family: sans-serif; }',
+      'script.js': 'console.log("Hello, world!");'
+
+    // Populate file list
+    Object.keys(files).forEach(filename => {
+      const li = document.createElement('li');
+      li.className = 'file-item';
+      li.textContent = filename;
+      li.onclick = () => showFileContent(filename);
+      fileListContainer.appendChild(li);
+    });
+
+    function showFileContent(filename) {
+      codeDisplay.textContent = files[filename];
+    }
+  </script>
+</body>
+</html>
